@@ -137,7 +137,7 @@ h1 {
 
 .portfolio-section {
   padding: 6rem 0;
-  background-color: #1a1a1a;
+  background-color: transparent;
   color: white;
 }
 
@@ -282,4 +282,129 @@ h1 {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-section {
+  padding: 6rem 0;
+  background-color: transparent;
+  color: #1a1a1a;
+}
+
+.timeline-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #ffffff; /* Ensure the title is visible on the dark background */
+}
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1fr 2px 80px 120px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.timeline-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+.timeline-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.timeline-content h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.timeline-content p {
+  line-height: 1.6;
+  color: #444;
+}
+
+.timeline-line {
+  height: 100%;
+  background-color: #ffee00;
+  width: 2px;
+  margin: 0 auto;
+}
+
+.timeline-marker {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.timeline-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #3498db;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.timeline-date {
+  padding-top: 25px;
+  color: #e2dcdc;
+  font-weight: 500;
+}
+
+.timeline-link {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.timeline-link:hover {
+  color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .timeline-event {
+    grid-template-columns: 20px 1fr;
+    gap: 15px;
+  }
+
+  .timeline-content {
+    grid-column: 2;
+    margin-right: 0;
+  }
+
+  .timeline-line {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  .timeline-marker {
+    grid-column: 1;
+    grid-row: 1;
+    transform: translateX(-35%);
+    padding-top: 0;
+  }
+
+  .timeline-date {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 0;
+    margin-bottom: -15px;
+  }
 }

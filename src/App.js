@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import ConstellationBackground from './components/ConstellationBackground';
 import AboutSection from './components/AboutSection';
 import PortfolioSection from './components/PortfolioSection';
+import TimelineSection from './components/TimelineSection';
 import './App.css';
 
 function App() {
@@ -71,6 +72,7 @@ function Home() {
       </div>
 
       <PortfolioSection />
+      <TimelineSection />
     </div>
   );
 }
