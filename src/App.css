@@ -1,0 +1,247 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1a1a1a;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #cccccc;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8rem 2rem 2rem;
+}
+
+.avatar {
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #cccccc;
+}
+
+.cv-container {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper {
+    padding-bottom: 200px; /* Adjust for larger screens as needed */
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.about-section {
+  padding: 6rem 0;
+  background-color: white;
+  color: #1a1a1a;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.about-content {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.portfolio-section {
+  padding: 6rem 0;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.portfolio-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.portfolio-section h3 {
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: #cccccc;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  border-radius: 8px;
+  padding: 2rem;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-card p {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.visit-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.visit-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.website-link-message {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+  
+  .about-section,
+  .portfolio-section {
+    padding: 4rem 0;
+  }
+
+  .about-section.hidden {
+    opacity: 0;
+    transform: translateY(50px); /* Push the section up */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .about-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  
