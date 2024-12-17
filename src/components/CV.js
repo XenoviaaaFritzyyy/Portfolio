@@ -1,9 +1,45 @@
-import React from 'react';
-import { Mail, MapPin, Globe, Github, Linkedin, GraduationCap, Briefcase, Code } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Mail, MapPin, Globe, Github, Linkedin, GraduationCap, Briefcase, Code, Download } from 'lucide-react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function CV() {
+    const cvRef = useRef(null);
+
+    const exportPDF = async () => {
+      const element = cvRef.current;
+      if (!element) return;
+  
+      try {
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          windowWidth: element.scrollWidth,
+          windowHeight: element.scrollHeight,
+        });
+        
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const imgX = (pdfWidth - imgWidth * ratio) / 2;
+        const imgY = 0;
+  
+        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+        pdf.save('Fritz_Abrea_CV.pdf');
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('There was an error generating the PDF. Please try again.');
+      }
+    };
+
   return (
-    <div className="cv-container">
+    <div className="cv-wrapper">
+      <div className="cv-container" ref={cvRef}>
       <header className="cv-header">
         <h1>FRITZ ABREA</h1>
         <p>Student Programmer. Information Technology Student. Aspiring Developer.</p>
@@ -193,6 +229,12 @@ function CV() {
           </section>
         </main>
       </div>
+    </div>
+
+      <button className="download-cv-btn" onClick={exportPDF}>
+        <Download className="icon" />
+        Download CV
+      </button>
     </div>
   );
 }

@@ -1,16 +1,22 @@
-.cv-container {
+.cv-wrapper {
+    position: relative;
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+  
+  .cv-container {
     max-width: 1200px;
-    margin: 2rem auto; /* Add top and bottom margin */
+    margin: 0 auto;
     background-color: #1a1a1a;
     color: #ffffff;
-    padding-top: 2rem; /* Add padding to top */
+    padding: 2rem;
   }
   
   .cv-header {
     background-color: #004d40;
-    padding: 3rem 2rem; /* Increase padding */
+    padding: 3rem 2rem;
     text-align: center;
-    margin-top: -2rem; /* Offset the container padding */
+    margin: -2rem -2rem 2rem -2rem;
   }
   
   .cv-header h1 {
@@ -28,7 +34,6 @@
     display: grid;
     grid-template-columns: 300px 1fr;
     gap: 2rem;
-    padding: 2rem;
   }
   
   .cv-sidebar {
@@ -138,6 +143,38 @@
     margin-bottom: 0.5rem;
   }
   
+  .download-cv-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #004d40;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .download-cv-btn:hover {
+    background-color: #00695c;
+  }
+  
+  .download-cv-btn .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  
+  @media print {
+    .download-cv-btn {
+      display: none;
+    }
+  }
+  
   @media (max-width: 768px) {
     .cv-content {
       grid-template-columns: 1fr;
@@ -150,10 +187,4 @@
     .cv-header h1 {
       font-size: 2rem;
     }
-  }
-  
-  .main-content {
-    padding-top: 2rem;
-    min-height: calc(100vh - 4rem); /* Adjust for the new padding */
-  }
-  
+  }  
