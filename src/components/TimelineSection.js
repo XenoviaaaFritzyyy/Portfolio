@@ -24,20 +24,6 @@ const TimelineSection = () => {
         date: "September 2023",
         description: "This semester marked the start of our App Development course, where we were grouped into teams and tasked with creating an application. Using Spring Boot for the backend and React for the frontend, our team developed 'Pet Society,' a platform designed to connect pet owners and enthusiasts.",
       },
-    {
-      id: 3,
-      title: "Cebu Institute of Technology - University",
-      subtitle: "Embarking on my journey as a Bachelor of Science in Information Technology student.",
-      date: "August 2021",
-      description: "This marks the beginning of my academic pursuit in Information Technology at Cebu Institute of Technology - University. During this time, I started building foundational knowledge in programming and IT principles, setting the stage for my future projects and career aspirations.",
-    },
-    {
-      id: 4,
-      title: "St. Louise de Marillac College of Bogo",
-      subtitle: "Starting my journey as a Senior High School student under the TVL-ICT strand.",
-      date: "August 2019",
-      description: "I began my Senior High School education at St. Louise de Marillac College of Bogo, specializing in the Technical-Vocational-Livelihood (TVL) ICT strand. During my first year, I delved deeply into animation. And in my second year was more on the basics of programming.",
-    },
     // Add more timeline events as needed
   ];
 

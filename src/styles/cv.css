@@ -1,0 +1,159 @@
+.cv-container {
+    max-width: 1200px;
+    margin: 2rem auto; /* Add top and bottom margin */
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding-top: 2rem; /* Add padding to top */
+  }
+  
+  .cv-header {
+    background-color: #004d40;
+    padding: 3rem 2rem; /* Increase padding */
+    text-align: center;
+    margin-top: -2rem; /* Offset the container padding */
+  }
+  
+  .cv-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .cv-header p {
+    margin: 0.5rem 0 0;
+    font-size: 1.1rem;
+  }
+  
+  .cv-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .cv-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .contact-list a {
+    color: #4db6ac;
+    text-decoration: none;
+  }
+  
+  .contact-list a:hover {
+    text-decoration: underline;
+  }
+  
+  .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: #4db6ac;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .skill-category {
+    margin-bottom: 1.5rem;
+  }
+  
+  .skill-category h3 {
+    color: #4db6ac;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .skill-dots {
+    display: flex;
+    gap: 0.25rem;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #333;
+  }
+  
+  .dot.filled {
+    background-color: #4db6ac;
+  }
+  
+  .education-item,
+  .experience-item {
+    margin-bottom: 2rem;
+  }
+  
+  .education-header,
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: #4db6ac;
+  }
+  
+  .education-item h3,
+  .experience-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .experience-item h4 {
+    color: #4db6ac;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .cv-content {
+      grid-template-columns: 1fr;
+    }
+  
+    .cv-header {
+      padding: 1.5rem;
+    }
+  
+    .cv-header h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  .main-content {
+    padding-top: 2rem;
+    min-height: calc(100vh - 4rem); /* Adjust for the new padding */
+  }
+  

@@ -7,7 +7,7 @@ const AboutSection = () => {
         <h2>Hi, Hello!</h2>
         <div className="about-content">
           <p>I'm Fritz M. Abrea!</p>
-          <p>I love programming, as well as playing video games, watching anime and reading novels!</p>
+          {/* <p>I love programming, as well as playing video games, watching anime and reading novels!</p> */}
           <p>Feel free to get in touch or take a look at my past work below.</p>
         </div>
       </div>
