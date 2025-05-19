@@ -54,7 +54,7 @@ function Home() {
         </div>
 
         <h1 className="hero-title">Fritz Abrea</h1>
-        <p className="subtitle">Student Programmer</p>
+        <p className="subtitle">Software Developer</p>
 
         <div className="social-links">
           <a href="https://github.com/XenoviaaaFritzyyy" aria-label="GitHub"><Github /></a>

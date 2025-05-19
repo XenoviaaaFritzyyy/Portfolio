@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Shield } from 'lucide-react';
 
 const TimelineSection = () => {
@@ -18,7 +18,7 @@ const TimelineSection = () => {
         description: "This marked the beginning of our capstone project, InvestTrack. Alongside my classmates, we collaborated to design and develop an innovative system focused on investment and funding tracking. This project allowed us to apply our technical skills, foster teamwork, and address real-world problems. It became a defining moment in our academic journey and preparation for professional challenges.",
     },
     {
-        id: 1,
+        id: 3,
         title: "App Development Journey - Pet Society",
         subtitle: "The beginning of our App Development subject in 3rd Year, 1st Semester",
         date: "September 2023",
@@ -27,28 +27,43 @@ const TimelineSection = () => {
     // Add more timeline events as needed
   ];
 
+  const eventRefs = useRef([]);
+  const [visibleEvents, setVisibleEvents] = useState([]);
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.getAttribute('data-index'));
+            setVisibleEvents((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    eventRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="timeline-section">
       <div className="container">
         <h2 className="timeline-title">Timeline</h2>
         <div className="timeline">
-          {timelineEvents.map(event => (
-            <div key={event.id} className="timeline-event">
+          {timelineEvents.map((event, idx) => (
+            <div
+              key={event.id}
+              className={`timeline-event${visibleEvents.includes(idx) ? ' visible' : ''}`}
+              ref={el => (eventRefs.current[idx] = el)}
+              data-index={idx}
+            >
               <div className="timeline-content">
                 <h3>{event.title}</h3>
                 <h4>{event.subtitle}</h4>
-                <p>
-                  {event.description.split(event.linkText).map((text, index, array) => (
-                    <React.Fragment key={index}>
-                      {text}
-                      {index < array.length - 1 && (
-                        <a href={event.link} className="timeline-link">
-                          {event.linkText}
-                        </a>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </p>
+                <p>{event.description}</p>
               </div>
               <div className="timeline-line" />
               <div className="timeline-marker">

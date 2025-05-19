@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const ProjectCard = ({ title, description, color, visitUrl }) => {
+const ProjectCard = forwardRef(({ title, description, color, visitUrl, visible, ...rest }, ref) => {
   return (
-    <div className="project-card" style={{ backgroundColor: color }}>
+    <div
+      className={`project-card${visible ? ' visible' : ''}`}
+      style={{ backgroundColor: color }}
+      ref={ref}
+      {...rest}
+    >
       <div className="project-content">
         <h3>{title}</h3>
         <p>{description}</p>
@@ -16,6 +21,6 @@ const ProjectCard = ({ title, description, color, visitUrl }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ProjectCard;

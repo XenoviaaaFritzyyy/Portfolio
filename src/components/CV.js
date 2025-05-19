@@ -1,45 +1,85 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Mail, MapPin, Globe, Github, Linkedin, GraduationCap, Briefcase, Code, Download } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 function CV() {
     const cvRef = useRef(null);
+    const [isPrinting, setIsPrinting] = useState(false);
 
     const exportPDF = async () => {
       const element = cvRef.current;
       if (!element) return;
   
       try {
+        setIsPrinting(true);
+        await new Promise(resolve => setTimeout(resolve, 100));
+
         const canvas = await html2canvas(element, {
           scale: 2,
           useCORS: true,
           logging: false,
           windowWidth: element.scrollWidth,
           windowHeight: element.scrollHeight,
+          backgroundColor: '#ffffff'
         });
-        
-        const imgData = canvas.toDataURL('image/png');
+
+        const imgProps = {
+          width: canvas.width,
+          height: canvas.height
+        };
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
-        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-        const imgX = (pdfWidth - imgWidth * ratio) / 2;
-        const imgY = 0;
-  
-        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+        const pxPerMm = imgProps.width / pdfWidth;
+        const pageHeightPx = Math.round(pdfHeight * pxPerMm);
+        let renderedHeight = 0;
+        let pageNum = 0;
+
+        while (renderedHeight < imgProps.height) {
+          const pageCanvas = document.createElement('canvas');
+          pageCanvas.width = imgProps.width;
+          const sliceHeight = Math.min(pageHeightPx, imgProps.height - renderedHeight);
+          pageCanvas.height = sliceHeight;
+
+          const ctx = pageCanvas.getContext('2d');
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+          ctx.drawImage(
+            canvas,
+            0, renderedHeight, // source x, y
+            imgProps.width, sliceHeight, // source w, h
+            0, 0, // dest x, y
+            imgProps.width, sliceHeight // dest w, h
+          );
+
+          const imgData = pageCanvas.toDataURL('image/png');
+          if (pageNum > 0) pdf.addPage();
+          pdf.addImage(
+            imgData,
+            'PNG',
+            0,
+            0,
+            pdfWidth,
+            (sliceHeight / pxPerMm)
+          );
+          renderedHeight += sliceHeight;
+          pageNum++;
+        }
+
         pdf.save('Fritz_Abrea_CV.pdf');
+        setIsPrinting(false);
       } catch (error) {
         console.error('Error generating PDF:', error);
         alert('There was an error generating the PDF. Please try again.');
+        setIsPrinting(false);
       }
     };
 
   return (
     <div className="cv-wrapper">
-      <div className="cv-container" ref={cvRef}>
+      <div className={`cv-container ${isPrinting ? 'printing' : ''}`} ref={cvRef}>
       <header className="cv-header">
         <h1>FRITZ ABREA</h1>
         <p>Student Programmer. Information Technology Student. Aspiring Developer.</p>
@@ -97,7 +137,7 @@ function CV() {
                 <span>Python</span>
                 <div className="skill-dots">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className={`dot ${i < 2 ? 'filled' : ''}`} />
+                    <span key={i} className={`dot ${i < 3 ? 'filled' : ''}`} />
                   ))}
                 </div>
               </div>
@@ -113,7 +153,7 @@ function CV() {
                 <span>HTML/CSS</span>
                 <div className="skill-dots">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className={`dot ${i < 3 ? 'filled' : ''}`} />
+                    <span key={i} className={`dot ${i < 4 ? 'filled' : ''}`} />
                   ))}
                 </div>
               </div>
@@ -122,6 +162,14 @@ function CV() {
                 <div className="skill-dots">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className={`dot ${i < 2 ? 'filled' : ''}`} />
+                  ))}
+                </div>
+              </div>
+              <div className="skill-item">
+                <span>Typescript</span>
+                <div className="skill-dots">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className={`dot ${i < 4 ? 'filled' : ''}`} />
                   ))}
                 </div>
               </div>
@@ -150,13 +198,13 @@ function CV() {
 
             <div className="education-item">
               <div className="education-header">
-                <div className="education-period">2021 - Present</div>
+                <div className="education-period">2021 - 2025</div>
                 <div className="education-location">Cebu Institute of Technology - University</div>
               </div>
               <h3>Bachelor of Science in Information Technology</h3>
               <ul>
                 {/* <li>Current GPA: 1.25</li> */}
-                <li>Expected graduation: 2025</li>
+                <li>Graduated: 2025</li>
                 <li>Relevant coursework: Capstone, Mobile Dev, Object Oriented Programming,
                     Data Structures and Algorithms</li>
               </ul>
@@ -168,6 +216,25 @@ function CV() {
               <Briefcase className="icon" />
               PROJECTS
             </h2>
+
+            <div className="experience-item">
+              <div className="experience-header">
+                <div className="experience-period">2025</div>
+                <div className="experience-location">Lahug, Cebu City, Cebu</div>
+              </div>
+              <h3>Travel Authority</h3>
+              <h4>Full Stack Developer</h4>
+              <p>Led the development of the Travel Authority system during my internship at the
+                 Department of Education – Cebu Province Division. As the full-stack developer, 
+                 I was responsible for both frontend and backend implementation. The application allows 
+                 teachers to submit and manage travel requests digitally, streamlining administrative 
+                 workflows in a paperless environment. I built the backend using NestJS and MySQL, 
+                 and developed the frontend using ReactJS, ensuring smooth API integration and a 
+                 user-friendly interface. The system enhanced operational efficiency and minimized 
+                 manual paperwork across departments.
+              </p>
+            </div>
+
             <div className="experience-item">
               <div className="experience-header">
                 <div className="experience-period">2024</div>

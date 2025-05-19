@@ -6,9 +6,9 @@ const AboutSection = () => {
       <div className="container">
         <h2>Hi, Hello!</h2>
         <div className="about-content">
-          <p>I'm Fritz M. Abrea!</p>
-          {/* <p>I love programming, as well as playing video games, watching anime and reading novels!</p> */}
-          <p>Feel free to get in touch or take a look at my past work below.</p>
+          <p>I'm Fritz M. Abrea, a passionate and driven graduate with a Bachelor of Science in Information Technology. I specialize in creating meaningful digital solutions through full-stack web development.</p>
+          <p>I enjoy learning new technologies and bringing ideas to life through code. Outside of tech, I love playing video games, watching anime, and getting lost in a good novel.</p>
+          <p>Feel free to explore my work below or reach out—I'd love to connect!</p>
         </div>
       </div>
     </section>

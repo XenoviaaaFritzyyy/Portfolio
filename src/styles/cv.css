@@ -10,6 +10,13 @@
     background-color: #1a1a1a;
     color: #ffffff;
     padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  /* Printing theme styles */
+  .cv-container.printing {
+    background-color: #ffffff;
+    color: #1a1a1a;
   }
   
   .cv-header {
@@ -17,6 +24,12 @@
     padding: 3rem 2rem;
     text-align: center;
     margin: -2rem -2rem 2rem -2rem;
+    transition: all 0.3s ease;
+  }
+
+  .cv-container.printing .cv-header {
+    background-color: #004d40;
+    color: #ffffff;
   }
   
   .cv-header h1 {
@@ -58,6 +71,11 @@
   .contact-list a {
     color: #4db6ac;
     text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .cv-container.printing .contact-list a {
+    color: #00695c;
   }
   
   .contact-list a:hover {
@@ -68,6 +86,11 @@
     width: 1.2rem;
     height: 1.2rem;
     color: #4db6ac;
+    transition: color 0.3s ease;
+  }
+
+  .cv-container.printing .icon {
+    color: #00695c;
   }
   
   h2 {
@@ -76,6 +99,12 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #4db6ac;
+    transition: color 0.3s ease;
+  }
+
+  .cv-container.printing h2 {
+    color: #00695c;
   }
   
   .skill-category {
@@ -86,6 +115,11 @@
     color: #4db6ac;
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .cv-container.printing .skill-category h3 {
+    color: #00695c;
   }
   
   .skill-item {
@@ -105,10 +139,20 @@
     height: 12px;
     border-radius: 50%;
     background-color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  .cv-container.printing .dot {
+    background-color: #e0e0e0;
   }
   
   .dot.filled {
     background-color: #4db6ac;
+    transition: background-color 0.3s ease;
+  }
+
+  .cv-container.printing .dot.filled {
+    background-color: #00695c;
   }
   
   .education-item,
@@ -122,6 +166,12 @@
     justify-content: space-between;
     margin-bottom: 0.5rem;
     color: #4db6ac;
+    transition: color 0.3s ease;
+  }
+
+  .cv-container.printing .education-header,
+  .cv-container.printing .experience-header {
+    color: #00695c;
   }
   
   .education-item h3,
@@ -133,6 +183,11 @@
   .experience-item h4 {
     color: #4db6ac;
     margin-bottom: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .cv-container.printing .experience-item h4 {
+    color: #00695c;
   }
   
   ul {
@@ -157,11 +212,14 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 1000;
   }
   
   .download-cv-btn:hover {
     background-color: #00695c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .download-cv-btn .icon {
@@ -172,6 +230,16 @@
   @media print {
     .download-cv-btn {
       display: none;
+    }
+
+    .cv-container {
+      background-color: #ffffff !important;
+      color: #1a1a1a !important;
+    }
+
+    .cv-header {
+      background-color: #004d40 !important;
+      color: #ffffff !important;
     }
   }
   
@@ -187,4 +255,10 @@
     .cv-header h1 {
       font-size: 2rem;
     }
+  }
+  
+  .cv-container.printing ul,
+  .cv-container.printing li {
+    color: #1a1a1a !important;
+    font-size: 1.05rem;
   }  
